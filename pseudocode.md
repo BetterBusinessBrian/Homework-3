@@ -6,49 +6,19 @@ Pseudocode for generator
 4. var includeNum = Prompt for numeric (ok for include, cancel to exclude)
 5. var includeSpec = Prompt for special characters (ok for include, cancel to exclude)
 
-<!--Making Password-->
-function generatePassword(length)
- // if (includeUpp = true && password.includes('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')) {
-  //   console.log("success")
-  //   success = true
-  // } else {
-  //   console.log("failure")
-  //   success = false
-  // }
-  // if (includeUpp = false && password.includes('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')) {
-  //   console.log("failure")
-  //   success = false
-  // } else {
-  //   console.log("success")
-  //   success = true
-  // }
+<!--Testing for presence of type-->
 
-  // if (includeNum = true && password.includes('1', '2', '3', '4', '5', '6', '7', '8', '9', '0')) {
-  //   console.log("success")
-  //   success = true
-  // } else {
-  //   console.log("failure")
-  //   success = false
-  // }
-  // if (includeNum = false && password.includes('1', '2', '3', '4', '5', '6', '7', '8', '9', '0')) {
-  //   console.log("failure")
-  //   success = false
-  // } else {
-  //   console.log("success")
-  //   success = true
-  // }
+If includeLow is true, then check every character in the string to see is any character from the array[lowCase] is there:
 
-  // if (includeSpec = true && password.includes('!', '@', '#', '$', '%', '^', '&', '*', '(', ')')) {
-  //   console.log("success")
-  //   success = true
-  // } else {
-  //   console.log("failure")
-  //   success = false
-  // }
-  // if (includeSpec = false && password.includes('!', '@', '#', '$', '%', '^', '&', '*', '(', ')')) {
-  //   console.log("failure")
-  //   success = false
-  // } else {
-  //   console.log("success")
-  //   success = true
-  // } 
+    function lowCheck(password) {
+    for (var i = 0; i < lowCase.length; i++) {
+    if (password.indexOf(lowCase[i]) > -1) {
+      return true;
+      console.log(true);
+    } else {
+      return false;
+      console.log(false);
+    }
+  }
+}
+}

@@ -15,14 +15,14 @@ function addCharTypes() {
   if (includeLow == true) {
     characters = characters.concat(lowCase);
   }
-  if(includeUpp == true){
-    characters =characters.concat(uppCase);
+  if (includeUpp == true) {
+    characters = characters.concat(uppCase);
   }
-  if(includeNum == true){
-    characters =characters.concat(numCase);
+  if (includeNum == true) {
+    characters = characters.concat(numCase);
   }
-  if(includeSpec == true){
-    characters =characters.concat(specCase);
+  if (includeSpec == true) {
+    characters = characters.concat(specCase);
   }
 }
 // Password Generating function
@@ -36,9 +36,23 @@ function generatePassword(length) {
   return result;
 }
 
+// Function for checking if lowercase is present
+function lowCheck(value) {
+  for (var i = 0; i < lowCase.length; i++) {
+    if (value.indexOf(lowCase[i]) == -1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
 // Write password to the #password input
 function writePassword() {
   var passLength = prompt("How many characters? (8-128)");
+  if (passLength < 8 || passLength > 128) {
+    passLength = prompt("Please enter a valid character amount: (8-128)");
+  }
   includeLow = confirm("Include lowercase? ok for include, cancel to exclude");
   includeUpp = confirm("Include uppercase? ok for include, cancel to exclude");
   includeNum = confirm("Include numeric? ok for include, cancel to exclude");
@@ -49,9 +63,10 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 
-
+  console.log(lowCheck(password));
   console.log(characters);
   console.log(password);
+  characters = [];
 
 }
 
