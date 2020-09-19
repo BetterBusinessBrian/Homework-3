@@ -6,11 +6,23 @@ var uppCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
 var numCase = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 var specCase = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')'];
 var includeLow = true;
+var includeUpp = true;
+var includeNum = true;
+var includeSpec = true;
 
 //Function for adding character types to pool
 function addCharTypes() {
   if (includeLow == true) {
     characters = characters.concat(lowCase);
+  }
+  if(includeUpp == true){
+    characters =characters.concat(uppCase);
+  }
+  if(includeNum == true){
+    characters =characters.concat(numCase);
+  }
+  if(includeSpec == true){
+    characters =characters.concat(specCase);
   }
 }
 // Password Generating function
@@ -28,9 +40,9 @@ function generatePassword(length) {
 function writePassword() {
   var passLength = prompt("How many characters? (8-128)");
   includeLow = confirm("Include lowercase? ok for include, cancel to exclude");
-  // var includeUpp = confirm("Include uppercase? ok for include, cancel to exclude");
-  // var includeNum = confirm("Include numeric? ok for include, cancel to exclude");
-  // var includeSpec = confirm("Include special characters? ok for include, cancel to exclude");
+  includeUpp = confirm("Include uppercase? ok for include, cancel to exclude");
+  includeNum = confirm("Include numeric? ok for include, cancel to exclude");
+  includeSpec = confirm("Include special characters? ok for include, cancel to exclude");
   addCharTypes();
   var password = generatePassword(passLength);
 
