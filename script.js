@@ -10,6 +10,8 @@ var includeUpp = true;
 var includeNum = true;
 var includeSpec = true;
 var password;
+var passLength;
+
 
 //Function for adding character types to pool
 function addCharTypes() {
@@ -28,37 +30,69 @@ function addCharTypes() {
 }
 // Password Generating function
 function generatePassword(length) {
-  var result = '';
+  var result = ''
   var charactersLength = characters.length;
   for (var i = 0; i < length; i++) {
     result += characters[(Math.floor(Math.random() * charactersLength))];
   }
   console.log(result);
+  criteriaTest(result);
+
   return result;
+}
+
+
+//Criteria Test Function
+
+function criteriaTest(result) {
+  if (includeLow) {
+    if (lowTest(result)) {
+    } else {
+     return generatePassword(passLength)
+    }
+  }
+  if (includeUpp) {
+    if (uppTest(result)) {
+    } else {
+       return generatePassword(passLength)
+    }
+  }
+  if (includeNum) {
+    if (numTest(result)) {
+    } else {
+       return generatePassword(passLength)
+    }
+  }
+  if (includeSpec) {
+    if (specTest(result)) {
+    } else {
+      return generatePassword(passLength)
+    }
+  }
 }
 
 // LowerCaseTest- is there one in this password? 
 function lowTest(password) {
   if (new RegExp(lowCase.join("|")).test(password)) {
-    console.log("There are lower case letters in '" + password + "'");
+    return true;
   } else {
-    console.log("There are no lowercase letters in '" + password + "'");
+    return false;
   }
 }
 // UpperCaseTest- is there one in this password? 
 function uppTest(password) {
   if (new RegExp(uppCase.join("|")).test(password)) {
-    console.log("There are upper case letters in '" + password + "'");
+    return true;
   } else {
-    console.log("There are no upper case letters in '" + password + "'");
+    return false;
   }
 }
 // NumericCaseTest- is there one in this password? 
 function numTest(password) {
   if (new RegExp(numCase.join("|")).test(password)) {
-    console.log("There are numeric characters in '" + password + "'");
+    return true;
   } else {
-    console.log("There are no numeric  characters in '" + password + "'");
+    return false;
   }
 }
 // SpecialCaseTest- is there one in this password? 
@@ -66,18 +100,14 @@ function specTest(password) {
   for (let i = 0; i < password.length; i++) {
     if (includeSpec) {
       if (specCase.includes(password.charAt(i))) {
-        console.log("There are special characters in '" + password + "'");
+        return true;
       }
     } else {
-      console.log("There are no special characters in '" + password + "'");
-    }
+      return false;
     }
   }
-  // if (new RegExp(specCase.join("|")).test(password)) {
-  //   console.log("There are special characters in '" + password + "'");
-  // } else {
-  //   console.log("There are no special characters in '" + password + "'");
-  // }
+}
+
 
 // Write password to the #password input
 function writePassword() {
@@ -91,13 +121,6 @@ function writePassword() {
   includeSpec = confirm("Include special characters? ok for include, cancel to exclude");
   addCharTypes();
   var password = generatePassword(passLength);
-
-  //Testing for all 4 cases 
-  lowTest(password);
-  uppTest(password);
-  numTest(password);
-  specTest(password);
-
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 
